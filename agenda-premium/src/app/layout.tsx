@@ -4,10 +4,9 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// Configurações para transformar o site em "App" (PWA)
 export const metadata: Metadata = {
   title: "Emily Matos Studio",
-  description: "Sistema de Gerenciamento Emily Matos",
+  description: "Sistema de Gerenciamento",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
@@ -20,13 +19,12 @@ export const metadata: Metadata = {
   },
 };
 
-// Configura a cor da barra superior do navegador no celular
 export const viewport: Viewport = {
-  themeColor: "#FFB6C1", // Rosa claro aproximado da logo
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
+  themeColor: "#FFB6C1",
 };
 
 export default function RootLayout({
@@ -37,15 +35,11 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <head>
-        {/* Força o ícone em dispositivos Apple antigos */}
         <link rel="apple-touch-icon" href="/icon.png" />
-        {/* Meta tag para garantir que o app ocupe a tela toda no iOS */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
       </head>
-      <body className={inter.className}>
-        <main className="min-h-screen bg-gray-50">
-          {children}
-        </main>
+      <body className={`${inter.className} antialiased overflow-x-hidden`}>
+        {children}
       </body>
     </html>
   );
