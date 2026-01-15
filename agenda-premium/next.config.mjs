@@ -1,11 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Se o site abrir em branco, tente remover a linha do basePath abaixo
   typescript: {
-    // Ignora erros de TypeScript no build
     ignoreBuildErrors: true,
   },
   eslint: {
-    // Ignora erros do ESLint no build
     ignoreDuringBuilds: true,
   },
 };
