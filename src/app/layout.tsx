@@ -20,9 +20,9 @@ export default function RootLayout({
       {/* Fundo escuro #373F47 combina com a paleta */}
       <body className={`${inter.className} flex h-full bg-[#373F47]`}>
         
-        {/* --- BARRA LATERAL (MÁRMORE) --- */}
+        {/* --- BARRA LATERAL (PC) --- */}
         <aside 
-            className="w-64 border-r border-[#D49FAF]/30 p-6 flex flex-col fixed inset-y-0 left-0 z-50 shadow-2xl"
+            className="hidden md:flex w-64 border-r border-[#D49FAF]/30 p-6 flex-col fixed inset-y-0 left-0 z-50 shadow-2xl"
             style={{
                 backgroundImage: "url('/marmore-hd.jpg')",
                 backgroundSize: "cover",
@@ -30,17 +30,13 @@ export default function RootLayout({
             }}
         >
           <div className="mb-10">
-            {/* Título na cor Chumbo da Paleta */}
             <h1 className="text-xl font-serif tracking-widest text-[#373F47] uppercase drop-shadow-sm font-bold">Emily Matos</h1>
-            
-            {/* Etiqueta na cor Rosa Chiclete da Paleta */}
             <div className="mt-2 inline-block bg-[#F7ACCF] px-2 py-1 rounded shadow-md">
                 <p className="text-[9px] tracking-[0.3em] text-[#373F47] font-black uppercase">Studio</p>
             </div>
           </div>
           
           <nav className="space-y-4 flex-1">
-            {/* Links usando as cores da paleta */}
             <Link href="/" className="flex items-center gap-3 px-4 py-3 rounded-2xl text-[#373F47] hover:bg-white/60 hover:text-[#A16585] font-bold transition-all border border-transparent">
               Agenda
             </Link>
@@ -60,11 +56,11 @@ export default function RootLayout({
           </div>
         </aside>
 
-        {/* --- ÁREA PRINCIPAL --- */}
-        <main className="flex-1 ml-64 relative min-h-screen bg-[#373F47] overflow-hidden">
+        {/* --- ÁREA PRINCIPAL (MOBILE + PC) --- */}
+        <main className="flex-1 md:ml-64 relative min-h-screen bg-[#373F47] overflow-hidden">
           
-          {/* FUNDO: MOSAICO DE FOTOS */}
-          <div className="fixed inset-0 ml-64 z-0 grid grid-cols-2 lg:grid-cols-4 h-screen w-full pointer-events-none select-none">
+          {/* FUNDO: MOSAICO DE FOTOS (SÓ PC) */}
+          <div className="hidden md:grid fixed inset-0 md:ml-64 z-0 grid-cols-2 lg:grid-cols-4 h-screen w-full pointer-events-none select-none">
             <div className="contents grayscale brightness-[0.6] contrast-125">
                 <div className="relative h-full w-full border-r border-[#373F47]/50">
                   <Image src="/emily-pose1.jpeg" alt="Fundo" fill className="object-cover object-top" priority />
@@ -80,7 +76,6 @@ export default function RootLayout({
                 </div>
             </div>
             
-            {/* Película com a cor Chumbo da paleta para uniformizar */}
             <div className="absolute inset-0 bg-[#373F47]/70 mix-blend-multiply z-10"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-[#373F47] via-transparent to-transparent z-10"></div>
           </div>
