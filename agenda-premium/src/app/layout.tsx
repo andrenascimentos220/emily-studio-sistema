@@ -1,50 +1,95 @@
-import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import './globals.css'
+import { Inter } from 'next/font/google'
+import Link from 'next/link'
+import Image from 'next/image'
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
-  title: "Emily Matos Studio",
-  manifest: "/manifest.json",
-  appleWebApp: { capable: true, statusBarStyle: "default" },
-};
+export const metadata = {
+  title: 'Emily Matos Studio',
+  description: 'Sistema de Gestão Premium',
+}
 
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
-};
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="pt-br">
-      <body className={`${inter.className} overflow-x-hidden`}>
-        {/* Layout Flex: No PC fica lado a lado, no Celular fica um em cima do outro */}
-        <div className="flex flex-col md:flex-row min-h-screen w-full">
-          
-          {/* MENU LATERAL - Agora ele se esconde ou encolhe no celular */}
-          <aside className="w-full md:w-64 bg-white border-b md:border-r border-pink-100 p-4 md:sticky md:top-0 md:h-screen z-50">
-            <div className="text-center md:text-left mb-8">
-              <h1 className="text-xl font-bold text-gray-800">EMILY MATOS</h1>
-              <span className="text-[10px] bg-pink-400 text-white px-2 py-0.5 rounded">STUDIO</span>
+    <html lang="pt-br" className="h-full">
+      {/* Fundo escuro #373F47 combina com a paleta */}
+      <body className={`${inter.className} flex h-full bg-[#373F47]`}>
+        
+        {/* --- BARRA LATERAL (MÁRMORE) --- */}
+        <aside 
+            className="w-64 border-r border-[#D49FAF]/30 p-6 flex flex-col fixed inset-y-0 left-0 z-50 shadow-2xl"
+            style={{
+                backgroundImage: "url('/marmore-hd.jpg')",
+                backgroundSize: "cover",
+                backgroundPosition: "center"
+            }}
+        >
+          <div className="mb-10">
+            {/* Título na cor Chumbo da Paleta */}
+            <h1 className="text-xl font-serif tracking-widest text-[#373F47] uppercase drop-shadow-sm font-bold">Emily Matos</h1>
+            
+            {/* Etiqueta na cor Rosa Chiclete da Paleta */}
+            <div className="mt-2 inline-block bg-[#F7ACCF] px-2 py-1 rounded shadow-md">
+                <p className="text-[9px] tracking-[0.3em] text-[#373F47] font-black uppercase">Studio</p>
             </div>
-            {/* Nav: No mobile fica em linha horizontal com scroll, no PC lista vertical */}
-            <nav className="flex md:flex-col gap-2 overflow-x-auto md:overflow-x-visible pb-2 md:pb-0">
-               <a href="/agenda" className="px-4 py-2 bg-gray-50 rounded-xl whitespace-nowrap">Agenda</a>
-               <a href="/clientes" className="px-4 py-2 bg-gray-50 rounded-xl whitespace-nowrap">Clientes</a>
-               <a href="/financeiro" className="px-4 py-2 bg-gray-50 rounded-xl whitespace-nowrap">Financeiro</a>
-               <a href="/servicos" className="px-4 py-2 bg-gray-50 rounded-xl whitespace-nowrap">Serviços</a>
-            </nav>
-          </aside>
+          </div>
+          
+          <nav className="space-y-4 flex-1">
+            {/* Links usando as cores da paleta */}
+            <Link href="/" className="flex items-center gap-3 px-4 py-3 rounded-2xl text-[#373F47] hover:bg-white/60 hover:text-[#A16585] font-bold transition-all border border-transparent">
+              Agenda
+            </Link>
+            <Link href="/financeiro" className="flex items-center gap-3 px-4 py-3 rounded-2xl text-[#373F47] hover:bg-white/60 hover:text-[#A16585] font-bold transition-all border border-transparent">
+              Financeiro
+            </Link>
+            <Link href="/clientes" className="flex items-center gap-3 px-4 py-3 rounded-2xl text-[#373F47] hover:bg-white/60 hover:text-[#A16585] font-bold transition-all border border-transparent">
+              Clientes
+            </Link>
+            <Link href="/servicos" className="flex items-center gap-3 px-4 py-3 rounded-2xl text-[#373F47] hover:bg-white/60 hover:text-[#A16585] font-bold transition-all border border-transparent">
+              Serviços
+            </Link>
+          </nav>
 
-          {/* CONTEÚDO PRINCIPAL - Ocupa o resto da tela */}
-          <main className="flex-1 w-full relative">
+          <div className="pt-6 border-t border-[#D49FAF]/50">
+            <p className="text-[10px] text-[#A16585] uppercase tracking-widest font-bold">Emily Matos Beauty</p>
+          </div>
+        </aside>
+
+        {/* --- ÁREA PRINCIPAL --- */}
+        <main className="flex-1 ml-64 relative min-h-screen bg-[#373F47] overflow-hidden">
+          
+          {/* FUNDO: MOSAICO DE FOTOS */}
+          <div className="fixed inset-0 ml-64 z-0 grid grid-cols-2 lg:grid-cols-4 h-screen w-full pointer-events-none select-none">
+            <div className="contents grayscale brightness-[0.6] contrast-125">
+                <div className="relative h-full w-full border-r border-[#373F47]/50">
+                  <Image src="/emily-pose1.jpeg" alt="Fundo" fill className="object-cover object-top" priority />
+                </div>
+                <div className="relative h-full w-full border-r border-[#373F47]/50">
+                   <Image src="/emily-tablet.jpeg" alt="Fundo" fill className="object-cover object-top" />
+                </div>
+                <div className="relative h-full w-full border-r border-[#373F47]/50">
+                   <Image src="/emily-tools.jpeg" alt="Fundo" fill className="object-cover object-top" />
+                </div>
+                <div className="relative h-full w-full">
+                   <Image src="/emily-pose2.jpeg" alt="Fundo" fill className="object-cover object-top" />
+                </div>
+            </div>
+            
+            {/* Película com a cor Chumbo da paleta para uniformizar */}
+            <div className="absolute inset-0 bg-[#373F47]/70 mix-blend-multiply z-10"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#373F47] via-transparent to-transparent z-10"></div>
+          </div>
+
+          <div className="relative z-20 text-[#E0E0E0] p-8 h-full overflow-y-auto">
             {children}
-          </main>
-        </div>
+          </div>
+        </main>
       </body>
     </html>
-  );
+  )
 }
