@@ -17,10 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br" className="h-full">
-      {/* Fundo escuro #373F47 combina com a paleta */}
       <body className={`${inter.className} flex h-full bg-[#373F47]`}>
         
-        {/* --- BARRA LATERAL (PC) --- */}
+        {/* --- BARRA LATERAL (APENAS PC) --- */}
         <aside 
             className="hidden md:flex w-64 border-r border-[#D49FAF]/30 p-6 flex-col fixed inset-y-0 left-0 z-50 shadow-2xl"
             style={{
@@ -56,33 +55,74 @@ export default function RootLayout({
           </div>
         </aside>
 
-        {/* --- ÁREA PRINCIPAL (MOBILE + PC) --- */}
-        <main className="flex-1 md:ml-64 relative min-h-screen bg-[#373F47] overflow-hidden">
+        {/* --- ÁREA PRINCIPAL --- */}
+        <main className="flex-1 md:ml-64 relative min-h-screen overflow-hidden flex flex-col">
           
-          {/* FUNDO: MOSAICO DE FOTOS (SÓ PC) */}
-          <div className="hidden md:grid fixed inset-0 md:ml-64 z-0 grid-cols-2 lg:grid-cols-4 h-screen w-full pointer-events-none select-none">
-            <div className="contents grayscale brightness-[0.6] contrast-125">
-                <div className="relative h-full w-full border-r border-[#373F47]/50">
-                  <Image src="/emily-pose1.jpeg" alt="Fundo" fill className="object-cover object-top" priority />
-                </div>
-                <div className="relative h-full w-full border-r border-[#373F47]/50">
-                   <Image src="/emily-tablet.jpeg" alt="Fundo" fill className="object-cover object-top" />
-                </div>
-                <div className="relative h-full w-full border-r border-[#373F47]/50">
-                   <Image src="/emily-tools.jpeg" alt="Fundo" fill className="object-cover object-top" />
-                </div>
-                <div className="relative h-full w-full">
-                   <Image src="/emily-pose2.jpeg" alt="Fundo" fill className="object-cover object-top" />
+          {/* FUNDO MÁRMORE (MOBILE) + MOSAICO (PC) */}
+          <div className="fixed inset-0 md:ml-64 z-0 pointer-events-none select-none">
+            
+            {/* Versão Mobile: Mármore Escuro */}
+            <div 
+                className="absolute inset-0 md:hidden bg-[#373F47]"
+                style={{
+                    backgroundImage: "url('/marmore-hd.jpg')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    opacity: 0.4 // Deixa o mármore sutil para ler o texto
+                }}
+            />
+
+            {/* Versão PC: Mosaico de Fotos */}
+            <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 h-screen w-full">
+                <div className="contents grayscale brightness-[0.6] contrast-125">
+                    <div className="relative h-full w-full border-r border-[#373F47]/50">
+                        <Image src="/emily-pose1.jpeg" alt="Fundo" fill className="object-cover object-top" priority />
+                    </div>
+                    <div className="relative h-full w-full border-r border-[#373F47]/50">
+                        <Image src="/emily-tablet.jpeg" alt="Fundo" fill className="object-cover object-top" />
+                    </div>
+                    <div className="relative h-full w-full border-r border-[#373F47]/50">
+                        <Image src="/emily-tools.jpeg" alt="Fundo" fill className="object-cover object-top" />
+                    </div>
+                    <div className="relative h-full w-full">
+                        <Image src="/emily-pose2.jpeg" alt="Fundo" fill className="object-cover object-top" />
+                    </div>
                 </div>
             </div>
             
-            <div className="absolute inset-0 bg-[#373F47]/70 mix-blend-multiply z-10"></div>
+            {/* Película Escura Geral */}
+            <div className="absolute inset-0 bg-[#373F47]/80 mix-blend-multiply z-10"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-[#373F47] via-transparent to-transparent z-10"></div>
           </div>
 
-          <div className="relative z-20 text-[#E0E0E0] p-8 h-full overflow-y-auto">
+          {/* CONTEÚDO DA PÁGINA (Com espaço extra embaixo para o menu mobile) */}
+          <div className="relative z-20 text-[#E0E0E0] p-6 pb-24 h-full overflow-y-auto">
             {children}
           </div>
+
+          {/* --- MENU RODAPÉ TIPO APP (APENAS MOBILE) --- */}
+          <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-[#2A3036] border-t border-[#D49FAF]/20 z-50 px-6 py-3 flex justify-between items-center shadow-[0_-4px_20px_rgba(0,0,0,0.3)]">
+            <Link href="/" className="flex flex-col items-center gap-1 text-[#D49FAF]">
+                <span className="text-2xl">📅</span>
+                <span className="text-[10px] font-bold uppercase tracking-wide">Agenda</span>
+            </Link>
+            
+            <Link href="/financeiro" className="flex flex-col items-center gap-1 text-[#E0E0E0] hover:text-[#D49FAF] transition-colors">
+                <span className="text-2xl">💰</span>
+                <span className="text-[10px] font-bold uppercase tracking-wide">Caixa</span>
+            </Link>
+
+            <Link href="/clientes" className="flex flex-col items-center gap-1 text-[#E0E0E0] hover:text-[#D49FAF] transition-colors">
+                <span className="text-2xl">👥</span>
+                <span className="text-[10px] font-bold uppercase tracking-wide">Clientes</span>
+            </Link>
+
+            <Link href="/servicos" className="flex flex-col items-center gap-1 text-[#E0E0E0] hover:text-[#D49FAF] transition-colors">
+                <span className="text-2xl">💅</span>
+                <span className="text-[10px] font-bold uppercase tracking-wide">Serviços</span>
+            </Link>
+          </nav>
+
         </main>
       </body>
     </html>
