@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
-    // Ignora erros de lint (aquelas linhas vermelhas) na hora de subir
+    // Ignora erros de linter (avisos amarelos) durante o build na Vercel
     ignoreDuringBuilds: true,
   },
   typescript: {
-    // Ignora erros de TypeScript
+    // Ignora erros de TypeScript durante o build na Vercel
     ignoreBuildErrors: true,
   },
 };
