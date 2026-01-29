@@ -166,9 +166,9 @@ export default function AgendaPage() {
             </div>
             {ag.status !== 'concluido' && (
                 <div className="flex gap-2 justify-end border-t border-[#373F47]/10 pt-3 mt-1">
-                    <button onClick={() => setModalMensagem(ag)} className="flex-1 py-2 rounded-xl bg-white text-[#373F47] text-[10px] font-bold uppercase tracking-wide hover:bg-green-50 flex items-center justify-center gap-2 shadow-sm">
-                        <MessageCircle size={14} className="text-green-600"/> Contato
-                    </button>
+                   <button onClick={() => setModalMensagem(ag)} className="flex-1 py-2 rounded-xl bg-white text-[#373F47] text-[10px] font-bold uppercase tracking-wide hover:bg-green-50 flex items-center justify-center gap-1 shadow-sm whitespace-nowrap">
+    <MessageCircle size={14} className="text-green-600 shrink-0"/> <span>Contato</span>
+</button>
                     <button onClick={() => setOpcoesAg(ag)} className="px-4 py-2 rounded-xl bg-white text-[#373F47] hover:bg-red-50 text-[10px] font-bold uppercase shadow-sm">Opções</button>
                     <button onClick={() => {
                         let v = ag.valor_sugerido || 0;
