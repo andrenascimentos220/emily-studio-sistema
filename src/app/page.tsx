@@ -127,13 +127,13 @@ export default function AgendaPage() {
          </div>
       </header>
 
-      {/* BARRA DE DATA FLUTUANTE CORRIGIDA */}
-      <div className="sticky top-4 z-40 bg-white/10 backdrop-blur-md p-1.5 rounded-[2rem] border border-white/20 shadow-xl flex justify-between items-center gap-2 pl-4">
-        <div className="flex items-center gap-3 text-white flex-1 h-10">
-            <CalendarIcon size={20} className="text-[#D49FAF]" />
-            <input type="date" value={dataSelecionada} onChange={e => setDataSelecionada(e.target.value)} className="font-bold text-white outline-none bg-transparent uppercase text-sm tracking-widest cursor-pointer w-full h-full" />
+      {/* BARRA DE DATA FLUTUANTE CORRIGIDA (Flex-Row Fix) */}
+      <div className="sticky top-4 z-40 bg-white/10 backdrop-blur-md p-1.5 rounded-[2rem] border border-white/20 shadow-xl flex flex-row items-center gap-2 pl-4">
+        <div className="flex items-center gap-3 text-white flex-1 h-10 min-w-0">
+            <CalendarIcon size={20} className="text-[#D49FAF] shrink-0" />
+            <input type="date" value={dataSelecionada} onChange={e => setDataSelecionada(e.target.value)} className="font-bold text-white outline-none bg-transparent uppercase text-sm tracking-widest cursor-pointer w-full h-full min-w-0" />
         </div>
-        <button onClick={() => setMostrarModal(true)} className="bg-[#E0E0E0] text-[#373F47] px-5 h-10 rounded-[1.5rem] font-bold flex items-center gap-2 shadow-lg transition-all hover:bg-[#F7ACCF] hover:text-[#373F47] active:scale-95 shrink-0">
+        <button onClick={() => setMostrarModal(true)} className="bg-[#E0E0E0] text-[#373F47] px-5 h-10 rounded-[1.5rem] font-bold flex items-center justify-center gap-2 shadow-lg transition-all hover:bg-[#F7ACCF] hover:text-[#373F47] active:scale-95 shrink-0 whitespace-nowrap">
             <Plus size={16}/> <span className="text-[10px] font-black uppercase tracking-widest">Novo</span>
         </button>
       </div>
@@ -183,9 +183,9 @@ export default function AgendaPage() {
         ))}
       </div>
 
-      {/* MODAL CENTRAL DE MENSAGENS (Z-Index 100) */}
+      {/* MODAL CENTRAL DE MENSAGENS (Z-Index 9999 - Nuclear) */}
       {modalMensagem && (
-        <div className="fixed inset-0 bg-[#373F47]/80 backdrop-blur-sm flex items-center justify-center p-6 z-[100]">
+        <div className="fixed inset-0 bg-[#373F47]/80 backdrop-blur-sm flex items-center justify-center p-6 z-[9999]">
            <div className="bg-white p-6 rounded-[2.5rem] shadow-2xl max-w-sm w-full relative animate-in zoom-in-95">
               <button onClick={() => setModalMensagem(null)} className="absolute top-4 right-4 p-2 bg-gray-100 rounded-full text-gray-400 hover:text-gray-600"><X size={18}/></button>
               <div className="text-center mb-6 mt-2">
@@ -216,9 +216,9 @@ export default function AgendaPage() {
         </div>
       )}
 
-      {/* MODAL NOVO AGENDAMENTO (Z-Index 100) */}
+      {/* MODAL NOVO AGENDAMENTO (Z-Index 9999 - Nuclear) */}
       {mostrarModal && (
-        <div className="fixed inset-0 bg-[#373F47]/80 backdrop-blur-sm flex items-end md:items-center justify-center p-0 md:p-4 z-[100]">
+        <div className="fixed inset-0 bg-[#373F47]/80 backdrop-blur-sm flex items-end md:items-center justify-center p-0 md:p-4 z-[9999]">
           <div className="bg-white rounded-t-[2.5rem] md:rounded-[2.5rem] shadow-2xl w-full md:max-w-sm max-h-[90vh] flex flex-col border-t-8 border-[#F7ACCF] animate-in slide-in-from-bottom-10">
             {/* Header Fixo */}
             <div className="p-6 pb-2 text-center">
@@ -287,9 +287,9 @@ export default function AgendaPage() {
         </div>
       )}
 
-      {/* MODAL CONCLUIR FINANCEIRO (Z-Index 100) */}
+      {/* MODAL CONCLUIR FINANCEIRO (Z-Index 9999 - Nuclear) */}
       {finalizandoAg && (
-        <div className="fixed inset-0 bg-[#373F47]/80 backdrop-blur-sm flex items-end md:items-center justify-center p-0 md:p-4 z-[100]">
+        <div className="fixed inset-0 bg-[#373F47]/80 backdrop-blur-sm flex items-end md:items-center justify-center p-0 md:p-4 z-[9999]">
           <div className="bg-white rounded-t-[2.5rem] md:rounded-[2.5rem] p-6 shadow-2xl w-full md:max-w-sm border-t-[8px] border-green-400 animate-in slide-in-from-bottom-10">
             <h2 className={`${cinzel.className} text-xl text-center mb-2 text-[#373F47] font-bold`}>RECEBER</h2>
             <p className="text-center text-xs text-gray-400 mb-6 uppercase tracking-wider">{finalizandoAg.cliente_nome}</p>
@@ -330,9 +330,9 @@ export default function AgendaPage() {
         </div>
       )}
 
-      {/* MODAL OPÇÕES (Z-Index 100) */}
+      {/* MODAL OPÇÕES (Z-Index 9999 - Nuclear) */}
       {opcoesAg && (
-        <div className="fixed inset-0 bg-[#373F47]/80 backdrop-blur-sm flex items-end md:items-center justify-center p-0 md:p-4 z-[100]">
+        <div className="fixed inset-0 bg-[#373F47]/80 backdrop-blur-sm flex items-end md:items-center justify-center p-0 md:p-4 z-[9999]">
           <div className="bg-white rounded-t-[2.5rem] md:rounded-[2.5rem] p-6 shadow-2xl w-full md:max-w-xs text-center animate-in slide-in-from-bottom-10">
             <h3 className={`${cinzel.className} text-lg text-[#373F47] mb-6 font-bold`}>GERENCIAR</h3>
             <div className="space-y-3">
@@ -344,9 +344,9 @@ export default function AgendaPage() {
         </div>
       )}
 
-      {/* MODAL NOVO HORÁRIO (Z-Index 100) */}
+      {/* MODAL NOVO HORÁRIO (Z-Index 9999 - Nuclear) */}
       {remarcandoAg && (
-        <div className="fixed inset-0 bg-[#373F47]/80 backdrop-blur-sm flex items-end md:items-center justify-center p-0 md:p-4 z-[100]">
+        <div className="fixed inset-0 bg-[#373F47]/80 backdrop-blur-sm flex items-end md:items-center justify-center p-0 md:p-4 z-[9999]">
           <div className="bg-white rounded-t-[2.5rem] md:rounded-[2.5rem] p-6 shadow-2xl w-full md:max-w-xs text-center animate-in slide-in-from-bottom-10">
             <h2 className={`${cinzel.className} text-lg text-[#373F47] mb-6 font-bold`}>NOVO HORÁRIO</h2>
             <form onSubmit={async (e) => {
@@ -364,9 +364,9 @@ export default function AgendaPage() {
         </div>
       )}
 
-      {/* MODAL DE CONFIRMAÇÃO (Z-Index 110 - Máximo) */}
+      {/* MODAL DE CONFIRMAÇÃO (Z-Index 10000 - Máximo Absoluto) */}
       {confirmacao && (
-        <div className="fixed inset-0 bg-[#373F47]/90 backdrop-blur-sm flex items-center justify-center p-6 z-[110]">
+        <div className="fixed inset-0 bg-[#373F47]/90 backdrop-blur-sm flex items-center justify-center p-6 z-[10000]">
              <div className="bg-white p-6 rounded-[2.5rem] max-w-xs w-full text-center animate-in zoom-in-95 shadow-2xl border-b-8 border-red-400">
                  <div className="flex justify-center mb-4 text-red-400"><AlertTriangle size={48} /></div>
                  <h3 className={`${cinzel.className} text-xl text-[#373F47] font-bold mb-2`}>Tem Certeza?</h3>
