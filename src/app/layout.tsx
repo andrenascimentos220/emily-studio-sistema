@@ -60,7 +60,6 @@ export default function RootLayout({
           
           {/* FUNDO MÁRMORE (MOBILE) + MOSAICO (PC) */}
           <div className="fixed inset-0 md:ml-64 z-0 pointer-events-none select-none">
-            
             {/* Versão Mobile: Mármore Escuro */}
             <div 
                 className="absolute inset-0 md:hidden bg-[#373F47]"
@@ -68,7 +67,7 @@ export default function RootLayout({
                     backgroundImage: "url('/marmore-hd.jpg')",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
-                    opacity: 0.4 // Deixa o mármore sutil para ler o texto
+                    opacity: 0.3
                 }}
             />
 
@@ -90,36 +89,56 @@ export default function RootLayout({
                 </div>
             </div>
             
-            {/* Película Escura Geral */}
-            <div className="absolute inset-0 bg-[#373F47]/80 mix-blend-multiply z-10"></div>
+            <div className="absolute inset-0 bg-[#373F47]/85 mix-blend-multiply z-10"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-[#373F47] via-transparent to-transparent z-10"></div>
           </div>
 
-          {/* CONTEÚDO DA PÁGINA (Com espaço extra embaixo para o menu mobile) */}
-          <div className="relative z-20 text-[#E0E0E0] p-6 pb-24 h-full overflow-y-auto">
+          {/* CONTEÚDO DA PÁGINA */}
+          <div className="relative z-20 text-[#E0E0E0] p-6 pb-28 h-full overflow-y-auto">
             {children}
           </div>
 
-          {/* --- MENU RODAPÉ TIPO APP (APENAS MOBILE) --- */}
-          <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-[#2A3036] border-t border-[#D49FAF]/20 z-50 px-6 py-3 flex justify-between items-center shadow-[0_-4px_20px_rgba(0,0,0,0.3)]">
-            <Link href="/" className="flex flex-col items-center gap-1 text-[#D49FAF]">
-                <span className="text-2xl">📅</span>
-                <span className="text-[10px] font-bold uppercase tracking-wide">Agenda</span>
+          {/* --- MENU RODAPÉ LUXO (SÓ MOBILE) --- */}
+          <nav className="md:hidden fixed bottom-6 left-4 right-4 bg-[#2A3036] border border-[#D49FAF]/30 rounded-2xl z-50 px-2 py-3 flex justify-around items-center shadow-[0_8px_30px_rgba(0,0,0,0.5)] backdrop-blur-md">
+            
+            {/* Ícone Agenda - Sólido */}
+            <Link href="/" className="flex flex-col items-center gap-1 group w-16">
+                <div className="p-2 rounded-xl bg-[#D49FAF]/10 group-active:bg-[#D49FAF]/20 transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#D49FAF" className="drop-shadow-sm">
+                        <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                    </svg>
+                </div>
+                <span className="text-[9px] font-bold uppercase tracking-widest text-[#E0E0E0] group-hover:text-white">Agenda</span>
             </Link>
             
-            <Link href="/financeiro" className="flex flex-col items-center gap-1 text-[#E0E0E0] hover:text-[#D49FAF] transition-colors">
-                <span className="text-2xl">💰</span>
-                <span className="text-[10px] font-bold uppercase tracking-wide">Caixa</span>
+            {/* Ícone Caixa - Sólido */}
+            <Link href="/financeiro" className="flex flex-col items-center gap-1 group w-16">
+                <div className="p-2 rounded-xl bg-[#D49FAF]/10 group-active:bg-[#D49FAF]/20 transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#D49FAF" className="drop-shadow-sm">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.47.33 2.62 1.26 2.79 3h-1.97c-.17-.72-.8-1.5-2.2-1.5-1.56 0-2.24.72-2.24 1.23 0 .65.41 1.43 2.38 1.98 2.86.79 4.41 1.71 4.41 3.75 0 1.8-1.48 2.9-3.37 3.18z"/>
+                    </svg>
+                </div>
+                <span className="text-[9px] font-bold uppercase tracking-widest text-[#E0E0E0] group-hover:text-white">Caixa</span>
             </Link>
 
-            <Link href="/clientes" className="flex flex-col items-center gap-1 text-[#E0E0E0] hover:text-[#D49FAF] transition-colors">
-                <span className="text-2xl">👥</span>
-                <span className="text-[10px] font-bold uppercase tracking-wide">Clientes</span>
+            {/* Ícone Clientes - Sólido */}
+            <Link href="/clientes" className="flex flex-col items-center gap-1 group w-16">
+                 <div className="p-2 rounded-xl bg-[#D49FAF]/10 group-active:bg-[#D49FAF]/20 transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#D49FAF" className="drop-shadow-sm">
+                        <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                    </svg>
+                </div>
+                <span className="text-[9px] font-bold uppercase tracking-widest text-[#E0E0E0] group-hover:text-white">Clientes</span>
             </Link>
 
-            <Link href="/servicos" className="flex flex-col items-center gap-1 text-[#E0E0E0] hover:text-[#D49FAF] transition-colors">
-                <span className="text-2xl">💅</span>
-                <span className="text-[10px] font-bold uppercase tracking-wide">Serviços</span>
+            {/* Ícone Serviços (Brilho/Star) - Sólido */}
+            <Link href="/servicos" className="flex flex-col items-center gap-1 group w-16">
+                <div className="p-2 rounded-xl bg-[#D49FAF]/10 group-active:bg-[#D49FAF]/20 transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#D49FAF" className="drop-shadow-sm">
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                    </svg>
+                </div>
+                <span className="text-[9px] font-bold uppercase tracking-widest text-[#E0E0E0] group-hover:text-white">Serviços</span>
             </Link>
           </nav>
 
