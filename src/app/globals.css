@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Cores Base */
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+
+  /* Identidade Visual Emily Matos */
+  --Emily-rose: #B76E79;   /* Ouro Rosé */
+  --Emily-copper: #b87333; /* Cobre */
+  --Emily-gold: #D4AF37;   /* Dourado Clássico */
+  --Emily-bg: #fdfcfc;     /* Fundo Mármore Claro */
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: var(--Emily-bg);
+  font-family: 'Cinzel', serif; /* Vamos configurar a fonte depois */
+}
+
+/* Regra para sumir com as barras de rolagem feias */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--Emily-rose);
+  border-radius: 4px;
+}
